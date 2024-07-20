@@ -46,7 +46,7 @@ namespace WindowsGSM.Plugins
         public string Game  = "vietnam"; // Default game name
         public string Defaultmap = "mcv_camp"; // Default map name
         public string Maxplayers = "16"; // Default maxplayers
-        public string Additional = "-nocrashdialog +clientport {{clientport}}"; // Additional server start parameter
+        public string Additional = "-nocrashdialog +clientport {{clientport}} +log on"; // Additional server start parameter
 
 
         // - Create a default cfg for the game server after installation
@@ -96,6 +96,7 @@ namespace WindowsGSM.Plugins
             sb.Append(string.IsNullOrWhiteSpace(serverData.ServerGSLT) ? string.Empty : $" +sv_setsteamaccount {serverData.ServerGSLT}");
             sb.Append(string.IsNullOrWhiteSpace(serverData.ServerParam) ? string.Empty : $" {serverData.ServerParam}");
             sb.Append(string.IsNullOrWhiteSpace(serverData.ServerMap) ? string.Empty : $" +map {serverData.ServerMap}");
+            sb.Append(string.IsNullOrWhiteSpace(serverData.ServerName) ? string.Empty : $" +hostname {serverData.ServerName}");
             if (serverData.ServerParam.Contains("-game ")) { sb.Replace($" -game {Game}", ""); }
             string param = sb.ToString();
 
